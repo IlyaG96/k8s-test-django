@@ -1,24 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: django-deployment
+  name: django-web
   labels:
-    app: django-web
+    app.kubernetes.io/name: django-web
+    app.kubernetes.io/component: web
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: django-web
+      app.kubernetes.io/name: django-web
+      app.kubernetes.io/component: web
   template:
     metadata:
       labels:
-        app: django-web
+        app.kubernetes.io/name: django-web
+        app.kubernetes.io/component: web
     spec:
       containers:
-        - name: django-web
+        - name: web
           image: ilyag96/django-app
           ports:
             - containerPort: 80
+              name: http
           envFrom:
             - configMapRef:
                 name: django-env
