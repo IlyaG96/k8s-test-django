@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-deployment
+  labels:
+    app: django-web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: django-web
+  template:
+    metadata:
+      labels:
+        app: django-web
+    spec:
+      containers:
+        - name: django-web
+          image: ilyag96/django-app
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: django-env

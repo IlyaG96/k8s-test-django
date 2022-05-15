@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: django-env
+data:
+  SECRET_KEY: "123secretkey"
+  DEBUG: "True"
+  DATABASE_URL: "postgres://postgres:mypostgresspassword1@pg:5432/postgres"

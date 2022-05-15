@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: migrations
+  labels:
+    app: migrations
+spec:
+  activeDeadlineSeconds: 120
+  template:
+    metadata:
+      labels:
+        app: migrations
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: migrations
+          image: ilyag96/django-app
+          imagePullPolicy: IfNotPresent
+          command:
+            - python
+            - manage.py
+            - migrate
+          envFrom:
+            - configMapRef:
+                name: django-env
