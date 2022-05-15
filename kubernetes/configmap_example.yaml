@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: django-env
+data:
+  SECRET_KEY: "verysecret"
+  DEBUG: "False"
+  DATABASE_URL: "read README.md"
+  ALLOWED_HOSTS: 123.123.123.123,dns.dns.ru
