@@ -18,7 +18,7 @@ spec:
         app.kubernetes.io/component: web
     spec:
       containers:
-        - name: web
+        - name: django-web
           image: ilyag96/django-app
           ports:
             - containerPort: 80
