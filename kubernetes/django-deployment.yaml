@@ -26,3 +26,23 @@ spec:
           envFrom:
             - configMapRef:
                 name: django-env
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: django-web
+  labels:
+    app.kubernetes.io/name: django-web
+    app.kubernetes.io/component: web
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: django-web
+    app.kubernetes.io/component: web
